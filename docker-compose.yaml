@@ -1,37 +1,27 @@
 ---
-version: "1"
+version: "3"
 services:
 
   flask:
     image: lukalarguier/flask:latest
-
+    container_name: flask
+    ports:
+      - 5000:5000
+    restart: always
+    depends_on:
+      - mariadb
 
   mariadb:
     image: mariadb
     container_name: bdd
     restart: always
-    depends_on:
-      - flask
     environment:
-      - MYSQL_USER: user
-      - MYSQL_PASSWORD: juve
-      - MYSQL_DATABASE: students.sql
-      - MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: delpiero
+      MYSQL_PASSWORD: juve
+      # MYSQL_DATABASE: exo3
+      MYSQL_ROOT_PASSWORD: juve
+    # command: 'mariadb -hdatabase bdd -uuser delpiero -pmypassword juve exo3'
 
     volumes:
-      - ${PWD}/mariadb/:/var/lib/mysql/
-
-    
-
-  servicesWeb:
-    image: httpd
-    container_name: servicesWeb
-    restart: always
-    depends_on:
-      - flask
-    ports:
-      - 5000:5000
-
-
-
+      - ./init:/docker-entrypoint-initdb.d
 ...
