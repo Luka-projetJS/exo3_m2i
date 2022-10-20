@@ -12,7 +12,9 @@ services:
       - mariadb
 
   mariadb:
-    image: mariadb
+    # image: mariadb
+    build: ./docker_compose_build
+    image: lukalarguier/bdd
     container_name: bdd
     restart: always
     environment:
