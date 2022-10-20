@@ -2,6 +2,6 @@
 Exercice sur docker et kubernetes pour m2i
 
 kubernetes:
-J'ai pas réussi à faire le cluster en entier. Je peux acceder à la page d'acceuil, mais pas la page student.
-Je pense que j'ai pas du faire correctement les images docker, j'ai du mal comprendre la consigne. Pourtant, mon docker-compose fonctionne très bien, je peux accéder à student.
 Je mets l'erreur en image dans le dossier kubernetes, mon pod se lance, mais pour faire une requete sur la base de donnée ça coince.
+
+Ok, j'ai compris mon erreur. Je pensais qu'il fallait créer une image de mariadb, QUI CONTIENT la base de donnée. Je suis parti la dessus car la commande : docker exec -it container_name mysql < /tmp/students.sql -p ne fonctionnait pas (sous toute les formes). Ducoup dans mon pod maria, je pensais qu'elle était déjà présente vu que j'utilisais l'image que j'avais créé, sauf que c'était buggué...
