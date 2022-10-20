@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: exo3
+  name: mariadb-pod
+  labels:
+    app: mariadb
+
+spec:
+  containers:
+  - name: mariadb-container
+    image: lukalarguier/bdd
+    ports:
+    - containerPort: 3306
+
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: juve
+    - name: MYSQL_USER
+      value: delpiero
+    - name: MYSQL_PASSWORD
+      value: juve
+    - name: MYSQL_DATABASE_HOST
+      value: mariadb
+    - name: MYSQL_DATABASE_DB
+      value: exo3
+
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "500m"
+      limits:
+        memory: "256Mi"
+        cpu: "750m"
+...
