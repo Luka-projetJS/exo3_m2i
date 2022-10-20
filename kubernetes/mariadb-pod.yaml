@@ -10,10 +10,11 @@ metadata:
 spec:
   containers:
   - name: mariadb-container
-    image: lukalarguier/bdd
+    image: mariadb
     ports:
     - containerPort: 3306
 
+    #j'ai mis plein de variable mais normalement juste le root password doit fonctionner
     env:
     - name: MYSQL_ROOT_PASSWORD
       value: juve
